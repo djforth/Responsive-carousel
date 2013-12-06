@@ -32,9 +32,13 @@ To compile Javascript files as changing run from root folder:
 
 ### Main JS
 In terminal:
-> coffee -o assets/javascripts/ -cw assets/preproccessed_files/coffeescript/
+```bash
+coffee -o assets/javascripts/ -cw assets/preproccessed_files/coffeescript/
+```
 
 ### Tests
 From Tests folder:
-> coffee -o specs/ -cw specs/coffeescript/
+```bash
+coffee -o specs/ -cw specs/coffeescript/
+```
 

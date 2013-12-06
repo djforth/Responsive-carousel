@@ -12,16 +12,14 @@
     baseUrl: "/tests/",
     urlArgs: "cb=" + Math.random(),
     paths: {
-      admaxim: "http://apptrack.admaxim.com/ads/track/admaxim_track",
       jasmine: jasmineFolder + "jasmine",
       jasmineHtml: jasmineFolder + "jasmine-html",
       jasmineJquery: "lib/jasmine-jquery",
-      jquery: "http://code.jquery.com/jquery-2.0.3.min",
-      zepto: jsFolder + "lib/zepto.min",
+      jquery: "http://code.jquery.com/jquery.min",
       underscore: jsFolder + 'lib/underscore-min',
       utils: jsFolder + "utils",
-      gallery: jsFolder + "gallery",
-      release: jsFolder + "release_date"
+      carousel: jsFolder + "carousel",
+      c_spec: "specs/carousel",
     },
     shim: {
       jasmine: {
@@ -40,6 +38,8 @@
   require(requiredModules, function() {
     var htmlReporter, jasmineEnv, specs;
 
+    jasmine.getFixtures().fixturesPath = "fixtures"
+
     jasmineEnv = jasmine.getEnv();
     jasmineEnv.updateInterval = 1000;
     htmlReporter = new jasmine.HtmlReporter();
@@ -47,7 +47,10 @@
     jasmineEnv.specFilter = function(spec) {
       return htmlReporter.specFilter(spec);
     };
-    specs = [specsFolder + "detect_spec", specsFolder + "gallery_spec", specsFolder + "manage_elements_spec", specsFolder + "loader_spec", specsFolder + "release_spec", specsFolder + "touch_spec"];
+    specs = ['c_spec/carousel_spec',
+            'c_spec/carousel.css_spec',
+            'c_spec/carousel.touch_spec',
+            'c_spec/carousel.ani_spec'];
     return require(specs, function() {
       return jasmineEnv.execute();
     });
