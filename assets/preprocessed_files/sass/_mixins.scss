@@ -1,0 +1,173 @@
+
+
+@function build_grad($colors, $direction){
+    //Sets direction
+    $dir:if($direction == "vertical", top, left);
+
+    $i: 2;// Sets loop
+    $g: $dir, nth($colors, 1);
+    @while $i < (length($colors) + 1) {
+      $g:$g, nth($colors, $i);
+      $i: $i + 1;
+    }
+
+    @return $g;
+}
+
+
+@function build_grad_webkit($colors, $direction){
+    //Sets direction
+    $dir:if($direction == "vertical", (left top, left bottom), (left top, right top));
+
+    $i: 2;// Sets loop
+    $g: $dir, color-stop(nth($colors, 1));
+    @while $i < (length($colors) + 1) {
+      $g:$g, color-stop(nth($colors, $i));
+      $i: $i + 1;
+    }
+
+    @return $g;
+}
+
+
+
+
+
+
+@mixin typography($size:1em, $line-height: normal, $bold:normal, $italic:normal){
+    font:{
+      weight:$bold;
+      size:$size;
+      family:Georgia, Cambria, "Times New Roman", Times, serif;
+    }
+    line-height:$line-height;
+    color:$body;
+}
+
+@mixin cabinsketch_bold {
+  font:{
+    family: "Cabin Sketch", Georgia, Cambria, "Times New Roman", Times, serif;
+    style: normal;
+    weight: 700;
+  }
+
+
+}
+
+
+@mixin box_shadow($h:2px, $v:2px, $b:5px, $s:2px, $color:rgba(00, 00, 00, 0.3)){
+    -webkit-box-shadow: $h $v $b $s $color;
+    -moz-box-shadow: $h $v $b $s $color;
+    box-shadow: $h $v $b $s $color;
+
+    //behavior: url("/assets/PIE.htc");
+}
+
+
+@mixin border-radius($radius:5px){
+    @if length($radius) != 1 {
+        $i:1;
+        //covers older modzilla browsers
+        @each $position in (topleft, topright, bottomright, bottomright) {
+            -moz-border-radius-#{$position}:nth($radius, $i);
+            $i:$i+1;
+        }
+        //Covers webkit browsers
+        -webkit-border-radius:nth($radius, 1) nth($radius, 2) nth($radius, 3) nth($radius, 4);
+        //Standard CSS3
+        border-radius: nth($radius, 1) nth($radius, 2) nth($radius, 3) nth($radius, 4);
+    } @else {
+        -webkit-border-radius: $radius;
+        -moz-border-radius: $radius;
+        border-radius: $radius;
+    }
+
+
+}
+
+@mixin hidetext(){
+    position:absolute;
+    left:-10000px;
+    top:auto;
+    width:1px;
+    height:1px;
+    overflow:hidden;
+}
+
+
+@mixin gradient($start, $end, $direction:"vertical"){
+    background: $end; /* Old browsers */
+
+    $wk:if($direction == "vertical", (left top, left bottom), (left top, right top));
+    background: -webkit-gradient(linear, $wk, color-stop(0%,$start), color-stop(100%,$end)); /* Chrome,Safari4+ */
+
+    $dir:if($direction == "vertical", top, left);
+    background: -moz-linear-gradient($dir, $start 0%, $end 100%); /* FF3.6+ */
+    background: -webkit-linear-gradient($dir, $start 0%,$end 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient($dir, $start 0%,$end 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient($dir, $start 0%,$end 100%); /* IE10+ */
+    background: linear-gradient($dir, $start 0%,$end 100%); /* W3C */
+
+
+    /* IE6-9 */
+    $ie:if($direction == "vertical", 0, 1);
+
+}
+
+@mixin complicated_gadient($colors, $img:image_url("nav_grad.jpg"), $direction:"vertical"){
+    @if $direction == "vertical" {
+      background: $img repeat-x; /* Old browsers */
+    } @else {
+      background: $img repeat-y;
+    }
+
+
+    $grad_webkit:build_grad_webkit($colors, $direction);
+    background: -webkit-gradient(linear, $grad_webkit);
+
+    $grad:build_grad($colors, $direction);
+
+    background: -moz-linear-gradient($grad); /* FF3.6+ */
+    background: -webkit-linear-gradient($grad); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient($grad); /* Opera 11.10+ */
+    background: -ms-linear-gradient($grad); /* IE10+ */
+    background: linear-gradient($grad); /* W3C */
+
+
+
+
+}
+
+@mixin icon_creator($sprite, $p, $w:30px, $h:30px, $float:left){
+background: image_url($sprite) $p no-repeat;
+ width:$w;
+height:$h;
+display:block;
+float:$float;
+}
+
+@mixin transform($s, $r){
+    -webkit-transform: skew($s) rotate($r);
+    -moz-transform: skew($s) rotate($r);
+    -ms-transform: skew($s) rotate($r);
+    -o-transform: skew($s) rotate($r);
+    transform: skew($s) rotate($r);
+}
+
+@mixin transitions($duration:0.3s, $property:all, $ease:ease-in-out){
+    -webkit-transition: $property $duration $ease;
+    -moz-transition: $property $duration $ease;
+    -o-transition: $property $duration $ease;
+    transition: $property $duration $ease;
+}
+
+@mixin text_shadow($hl:0, $vl:1, $br:0, $color:rgba(0, 0, 0, 0.3)){
+    text-shadow: #{$hl}px #{$vl}px #{$br}px $color;
+
+    //filter: dropshadow(color=$color, offx=$hl, offy=$vl);
+
+    //behavior: url("/assets/PIE.htc");
+}
+
+
+

@@ -1,0 +1,59 @@
+.obj-wrapper{
+  position:relative;
+  float:left;
+}
+
+.panel-bg{
+  padding:10px;
+  margin:10px 30px;
+
+  @include gradient($hero_panel_grad1, $hero_panel_grad2);
+  @include box_shadow;
+  @include border-radius(2px);
+}
+
+article.project-panel{
+
+  position: relative;
+  width:150px;
+  height:215px;
+
+
+  @media screen and (max-width: $break-tablet-wide) {
+    margin:10px 20px;
+  }
+
+  img{
+    margin:0 auto;
+    width:100%;
+    @include box_shadow;
+  }
+
+  .info{
+    width:100%;
+    // position: relative;
+    text-align:center;
+
+    h1{
+      width: 100%;
+      font-family:$body_font;
+      font-weight:normal;
+      font-size:  1.2em;
+      margin-top: 0.2em;
+    }
+
+    a{
+      position: absolute;
+      width:120px;
+      bottom:10px;
+      left: 50%;
+      margin-left:-60px;
+
+
+      // font-size:0.923em;
+      color:$hero_color;
+      text-align:center;
+    }
+  }
+
+}
