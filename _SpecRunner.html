@@ -1,0 +1,115 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Jasmine Spec Runner</title>
+
+  
+  <link rel="stylesheet" type="text/css" href=".grunt/grunt-contrib-jasmine/jasmine.css">
+  
+  <link rel="stylesheet" type="text/css" href="assets/stylesheets/screen.css">
+  
+
+  <script src=".grunt/grunt-contrib-jasmine/require.js"></script>
+  <script>
+    require.onError = function(error) {
+      var message = error.requireType + ': ';
+      if (error.requireType === 'scripterror' || error.requireType === 'notloaded' && error.requireModules) {
+        message += 'Illegal path or script error: ' + '[\'' + error.requireModules.join("', '") + '\']';
+      } else {
+        message += error.message;
+      }
+
+      throw Error(message);
+    };
+  </script>
+
+  
+  
+  <script src=".grunt/grunt-contrib-jasmine/jasmine.js"></script>
+  
+  <script src=".grunt/grunt-contrib-jasmine/jasmine-html.js"></script>
+  
+  <script src="assets/javascripts/lib/jquery.min.js"></script>
+  
+  <script src="spec/lib/sinon-1.6.0.js"></script>
+  
+  <script src="spec/lib/jasmine-jquery.js"></script>
+  
+  <script src="spec/lib/jasmine-sinon.js"></script>
+  
+  
+
+  <script>
+    
+
+    
+      require.config({
+  "mainConfigFile": "./assets/javascript/main.js",
+  "baseUrl": "spec/",
+  "urlArgs": "cb=0.3888226996641606",
+  "paths": {
+    "jquery": "/assets/javascripts/lib/jquery.min",
+    "underscore": "/assets/javascripts/lib/underscore-min",
+    "sinon": "lib/sinon-1.6.0",
+    "jasmineSinon": "lib/jasmine-sinon",
+    "jasmineJquery": "lib/jasmine-jquery",
+    "utils": "/assets/javascripts/utils",
+    "carousel": "/assets/javascripts/carousel"
+  }
+});
+    
+  </script>
+
+  <script>
+    function launchTest() {
+    require([
+      
+        
+        '../assets/javascripts/carousel/carousel_ani' ,
+      
+        
+        '../assets/javascripts/carousel/carousel_css' ,
+      
+        
+        '../assets/javascripts/carousel/carousel_main' ,
+      
+        
+        '../assets/javascripts/carousel/carousel_touch' ,
+      
+        
+        '../assets/javascripts/lib/jquery.min' ,
+      
+        
+        '../assets/javascripts/lib/require' ,
+      
+        
+        '../assets/javascripts/lib/underscore-min' ,
+      
+        
+        '../assets/javascripts/main' ,
+      
+        
+        '../assets/javascripts/utils/detect' 
+      
+    ],
+    function(){
+      require(['spec/carousel/carousel_ani_spec.js','spec/carousel/carousel_css_spec.js','spec/carousel/carousel_spec.js','spec/carousel/carousel_touch_spec.js','.grunt/grunt-contrib-jasmine/reporter.js'], function(){
+        require(['.grunt/grunt-contrib-jasmine/jasmine-helper.js'], function(){
+          // good to go! Our tests should already be running.
+        })
+      })
+    }
+    )
+  }
+  </script>
+
+  
+  <script>
+  launchTest();
+  </script>
+  
+</head>
+<body>
+</body>
+</html>

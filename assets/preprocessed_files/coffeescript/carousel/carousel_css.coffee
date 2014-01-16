@@ -1,11 +1,11 @@
 define (require) ->
   $        = require('jquery')
   _        = require('underscore')
-  Carousel = require('carousel/carousel.main')
+  Carousel = require('carousel/carousel_main')
 
   # d = new Detect()
   # $ = if !d.ieBrowser() then $2 else $1
-  
+
   class CarouselCSS extends Carousel
     CSSTransitions:""
 
@@ -27,14 +27,14 @@ define (require) ->
 
     moveCarousel:(dir="right")->
       # super(dir)
-      current =  @getSelected()  
+      current =  @getSelected()
       item = if dir == "left" then @getNextItem(current, false) else @getNextItem(current)
 
       css = if dir == "left" then @left_classes else @right_classes
-     
+
       @cssTransitionsIn(item, css.start)
       @cssTransitionsOut(current, css.out)
-    
+
     setCSSTransitions:(id, move)->
       _.defer (id, move)->
         $(id).addClass(move)

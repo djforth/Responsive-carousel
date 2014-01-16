@@ -8,7 +8,7 @@ describe "CarouselCSS", ->
     @carousel = ""
     that = @
 
-    require ['carousel/carousel.css'], (Carousel_css) ->
+    require ['carousel/carousel_css'], (Carousel_css) ->
       # @feature = new detect()
       flag = true
       that.carousel = new Carousel_css({},false)

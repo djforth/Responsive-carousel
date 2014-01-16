@@ -1,7 +1,7 @@
 define (require) ->
   $        = require('jquery')
   _        = require('underscore')
-  Carousel = require('carousel/carousel.main')
+  Carousel = require('carousel/carousel_main')
 
   class CarouselAni extends Carousel
 
@@ -15,8 +15,8 @@ define (require) ->
       item.removeClass(start_css) if select
       item.removeAttr( 'style' )
       if select
-        item.addClass(@selected) 
-      else 
+        item.addClass(@selected)
+      else
         item.removeClass(@selected)
       item.addClass(@item_class)
 
@@ -33,7 +33,7 @@ define (require) ->
 
 
     moveCarousel:(dir="right")->
-      current =  @getSelected()  
+      current =  @getSelected()
       item = if dir == "left" then @getNextItem(current, false) else @getNextItem(current)
 
       css = if dir == "left" then @left_classes else @right_classes
@@ -54,7 +54,7 @@ define (require) ->
     transitionsOut:(item, starter)->
 
       _.defer(@animateCarousel, item, {css:"", move:starter, select:false}, @)
-  
+
 
 
 

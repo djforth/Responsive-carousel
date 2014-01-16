@@ -1,3 +1,15 @@
+clickElement = (el) ->
+    ev = document.createEvent("MouseEvent");
+    ev.initMouseEvent(
+      "click",
+      true, true,
+      window, null,
+      0, 0, 0, 0,
+      false, false, false, false,
+      0, null
+    )
+    el.dispatchEvent(ev)
+
 
 describe "Carousel", ->
   beforeEach ->
@@ -8,7 +20,7 @@ describe "Carousel", ->
     that = @
 
     # @feature = new detect()
-    require ['carousel/carousel.main'], (Carousel) ->
+    require ['carousel/carousel_main'], (Carousel) ->
       flag = true
       that.carousel = new Carousel({},false)
 
@@ -27,6 +39,7 @@ describe "Carousel", ->
       @carousel.getAmount()
 
     it "should check number of items", ->
+
       expect(@carousel.items.length).toEqual(5)
 
     it "should how manyItems will fit", ->
@@ -59,17 +72,18 @@ describe "Carousel", ->
       describe "find items", ->
         it "Should return the selected item", ->
           item = @carousel.getSelected()
-          expect(item).toBe("#inner1")
+          # console.log item
+          expect(item.attr("id")).toEqual("inner1")
 
         it "Should select the next item", ->
           item = @carousel.getNextItem($(".carousel-selected"))
-          expect(item).toBe("#inner2")
+          expect(item.attr("id")).toEqual("inner2")
 
         it "Should select first item if selected at last", ->
           $('#inner1').removeClass("carousel-selected")
           $('#inner3').addClass("carousel-selected")
           item = @carousel.getNextItem($(".carousel-selected"))
-          expect(item).toBe("#inner1")
+          expect(item.attr("id")).toEqual("inner1")
 
 
         it "Should select previous item", ->
@@ -80,7 +94,7 @@ describe "Carousel", ->
 
         it "Should select last item if selected at first", ->
           item = @carousel.getNextItem($(".carousel-selected"), false)
-          expect(item).toBe("#inner3")
+          expect(item.attr("id")).toEqual("inner3")
 
     describe "sets click functions", ->
       beforeEach ->
@@ -90,13 +104,23 @@ describe "Carousel", ->
         @right_btn = spyOnEvent('#right', 'click')
 
       it 'should apply a click event to the left button', ->
-        $('#left').click()
+        if (window._phantom)
+          el = document.querySelector("#left")
+          clickElement(el)
+        else
+          $('#left').click()
+
         expect(@left_btn).toHaveBeenTriggered()
         expect(@carousel.moveCarousel).toHaveBeenCalledWith("left")
 
 
       it 'should apply a click event to the right button', ->
-        $('#right').click()
+        if (window._phantom)
+          el = document.querySelector("#right")
+          clickElement(el)
+        else
+          $('#right').click()
+
         expect(@right_btn).toHaveBeenTriggered()
         expect(@carousel.moveCarousel).toHaveBeenCalledWith("right")
 

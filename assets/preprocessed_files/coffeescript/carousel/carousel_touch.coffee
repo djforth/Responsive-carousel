@@ -1,7 +1,7 @@
 define (require) ->
   $           = require('jquery')
   _           = require('underscore')
-  CarouselCss = require('carousel/carousel.css')
+  CarouselCss = require('carousel/carousel_css')
 
   class CarouselTouch extends CarouselCss
     startX:null

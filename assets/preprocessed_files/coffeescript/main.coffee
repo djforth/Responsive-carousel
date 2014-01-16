@@ -9,17 +9,17 @@ require.config {
 
 dependencies = [
   'utils/detect',
-  'carousel/carousel.css',
-  'carousel/carousel.ani'
-  'carousel/carousel.touch'
+  'carousel/carousel_css',
+  'carousel/carousel_ani'
+  'carousel/carousel_touch'
 ]
 
 
 require [
   'utils/detect',
-  'carousel/carousel.css',
-  'carousel/carousel.ani'
-  'carousel/carousel.touch'
+  'carousel/carousel_css',
+  'carousel/carousel_ani'
+  'carousel/carousel_touch'
 ], (Detect, CarouselCss, CarouselAni, CarouselTouch) ->
 
     #Sets carousel functions - Homepage only

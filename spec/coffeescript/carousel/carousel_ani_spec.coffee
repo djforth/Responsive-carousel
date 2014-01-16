@@ -7,9 +7,7 @@ describe "Carousel Animation (No CSS Transition)", ->
     @carousel = ""
     that = @
 
-    console.log "eh?"
-
-    require ['carousel/carousel.ani'], (Carousel_ani) ->
+    require ['carousel/carousel_ani'], (Carousel_ani) ->
       # @feature = new detect()
       flag = true
       that.carousel = new Carousel_ani({},false)

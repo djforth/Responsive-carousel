@@ -7,8 +7,8 @@ describe "Carousel Touch", ->
     @carousel = ""
     that = @
 
-    require ['carousel/carousel.touch'], (Carousel_touch) ->
-      # @feature = new detect()
+    require ['carousel/carousel_touch'], (Carousel_touch) ->
+
       flag = true
       that.carousel = new Carousel_touch({},false)
 
@@ -27,8 +27,10 @@ describe "Carousel Touch", ->
 
     it 'should get touch area', ->
       # area = @carousel.getTouchArea()
+      console.log "Area test", @area
+
       expect(@area).toBeDefined()
-      expect(@area).toHaveAttr('id',"project_outer")
+      expect(@area.attr('id')).toEqual("project_outer")
 
     describe 'move functions', ->
       beforeEach ->
