@@ -5,6 +5,10 @@ A responsive carousel example using Require, CoffeeScript and Compass
 
 # Requirements
 
+* Grunt
+* Compass
+* Node & NPM
+* Phantomjs
 
 ## JavaScript
 All JS written in CoffeeScript - http://coffeescript.org/
@@ -20,25 +24,29 @@ Written in SCSS - http://sass-lang.com/
 
 Using Compass - http://compass-style.org/help/
 
+## Grunt Command
+
+Run local version
+
 ```bash
- compass watch
+
+grunt dev
+
 ```
 
-# CoffeeScript set up
+Run Tests
 
-To install CoffeeScript first install node (would recommend Homebrew for this), then follow http://coffeescript.org/#installation
-
-To compile Javascript files as changing run from root folder:
-
-### Main JS
-In terminal:
 ```bash
-coffee -o assets/javascripts/ -cw assets/preproccessed_files/coffeescript/
+
+grunt test
+
 ```
 
-### Tests
-From Tests folder:
+Run For production
+
 ```bash
-coffee -o specs/ -cw specs/coffeescript/
+
+grunt release
+
 ```
 
