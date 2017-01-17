@@ -1,6 +1,8 @@
 Responsive-carousel
 ===================
 
+# This Project is depricated
+
 A responsive carousel example using Require, CoffeeScript and Compass
 
 # Requirements
